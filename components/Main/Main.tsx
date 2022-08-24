@@ -42,20 +42,3 @@ const Main: React.FC = () => {
 }
 
 export default Main;
-
-/* 
-<Offer 
-                id={testItem.id}
-                company={testItem.company}
-                logo={testItem.logo}
-                isNew={testItem.new}
-                featured={testItem.featured}
-                position={testItem.position}
-                role={testItem.role}
-                level={testItem.level}
-                postedAt={testItem.postedAt}
-                contract={testItem.contract}
-                location={testItem.location}
-                languages={testItem.languages}
-                tools={testItem.tools}
-       /> */

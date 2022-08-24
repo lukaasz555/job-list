@@ -10,12 +10,15 @@ export interface DetailsProps {
 const StyledWrapper = styled.div`
     display: flex;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    width: 70%;
+    //width: 70%;
     color: ${({theme}) => theme.colors.darkCyan};
-    //border-bottom: 1px solid;
+    border-bottom: 1px solid;
     padding-bottom: 1em;
+    // trying width:
+    width: 100%;
+    font-size: 15px;
 
     p {
         font-family: 'League Spartan', sans-serif;
@@ -26,7 +29,8 @@ const StyledWrapper = styled.div`
         height: 3px;
         width: 3px;
         border-radius: 50px;
-        background-color: ${({theme}) => theme.colors.darkCyan};;
+        background-color: ${({theme}) => theme.colors.darkCyan};
+        margin: 0 .5em;
     }
 
     `

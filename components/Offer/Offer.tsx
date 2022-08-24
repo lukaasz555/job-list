@@ -6,15 +6,18 @@ import Featured from '../atoms/Featured/Featured';
 import {theme} from '../../assets/theme';
 import Logo from "../atoms/Logo/Logo";
 import Details from "../atoms/Details/Details";
+import Tech from "../atoms/Tech/Tech";
 
 const StyledWrapper = styled.div`
     background-color: ${({theme}) => theme.colors.lightCyanBg};
-    min-width: 350px;
+    //min-width: 350px;
     border-radius: 8px;
     position: relative;
     margin: 2em 0 2em;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
-    padding: 1em 2em;
+    padding: 1em 1.5em;
+    // trying width;
+    width: 90%;
 
 
     h1 {
@@ -57,10 +60,17 @@ const TopWrapper = styled.div`
     }
 `
 const DetailsWrapper = styled.div`
+
     h1 {
         color: ${({theme}) => theme.colors.veryDarkCyan};
         margin-bottom: 1em;
     }
+`
+
+const TechWrapper = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: .5em;
 `
 
 export interface OfferProps {
@@ -88,7 +98,11 @@ const Offer: React.FC<OfferProps> = ({
     featured,
     location,
     contract,
-    postedAt
+    postedAt,
+    role,
+    level,
+    tools,
+    languages
 }) => {
 
     const [newOffer, setNew] = useState(false);
@@ -113,6 +127,10 @@ const Offer: React.FC<OfferProps> = ({
             <h1>{position}</h1>
             <Details postedAt={postedAt} contract={contract} location={location} />
         </DetailsWrapper>
+
+        <TechWrapper>
+            <Tech role={role} level={level} tools={tools} languages={languages} />
+        </TechWrapper>
 
 
         </StyledWrapper>
