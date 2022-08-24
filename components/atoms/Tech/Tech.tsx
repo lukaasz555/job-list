@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledItem = styled.div`
-    background-color: ${({theme}) => theme.colors.lightCyanBG};
     margin: .5em;
     background-color: rgba(91, 164, 164, .1);
+    &:last-child {
+        margin-right: 0;
+    }
 
     p {
         color: ${({theme}) => theme.colors.primary};

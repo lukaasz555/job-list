@@ -13,6 +13,8 @@ const StyledWrapper = styled.main`
     justify-content: flex-start;
     align-items: center;
     padding-top: 3em;
+
+
 `
 
 

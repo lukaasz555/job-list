@@ -8,16 +8,26 @@ import Logo from "../atoms/Logo/Logo";
 import Details from "../atoms/Details/Details";
 import Tech from "../atoms/Tech/Tech";
 
+const OfferLeft = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
 const StyledWrapper = styled.div`
     background-color: ${({theme}) => theme.colors.lightCyanBg};
-    //min-width: 350px;
     border-radius: 8px;
     position: relative;
     margin: 2em 0 2em;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
     padding: 1em 1.5em;
-    // trying width;
+
     width: 90%;
+
+    @media (min-width: 992px) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
 
     h1 {
@@ -47,6 +57,8 @@ const StyledWrapper = styled.div`
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
     }
+
+
 `
 const TopWrapper = styled.div`
     display: flex;
@@ -71,6 +83,11 @@ const TechWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin-top: .5em;
+    @media (min-width: 768px) {
+     flex-wrap: nowrap;
+        flex-basis: 70%;
+        justify-content: flex-end;
+    }
 `
 
 export interface OfferProps {
@@ -115,8 +132,10 @@ const Offer: React.FC<OfferProps> = ({
     return (
         <StyledWrapper>
         {newOffer ? <span className="leftItemNew"></span> : <span className="leftItem"></span> }
-        <Logo company={company} logo={logo} />
-        
+
+        <Logo company={company} logo={logo} />  
+        <OfferLeft>
+              
         <TopWrapper>
             <h1>{company}</h1>
             <New isNew={newOffer}/> 
@@ -127,6 +146,7 @@ const Offer: React.FC<OfferProps> = ({
             <h1>{position}</h1>
             <Details postedAt={postedAt} contract={contract} location={location} />
         </DetailsWrapper>
+        </OfferLeft>
 
         <TechWrapper>
             <Tech role={role} level={level} tools={tools} languages={languages} />

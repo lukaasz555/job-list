@@ -20,6 +20,10 @@ const StyledWrapper = styled.div`
     width: 100%;
     font-size: 15px;
 
+    @media (min-width: 992px) {
+        border-bottom: none;
+    }
+
     p {
         font-family: 'League Spartan', sans-serif;
         font-weight: 500;
