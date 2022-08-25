@@ -1,18 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledItem = styled.div`
+export const StyledButton = styled.div`
     margin: .5em;
     background-color: rgba(91, 164, 164, .1);
+    color: ${({theme}) => theme.colors.primary};
+    font-weight: 700;
+    font-size: 15px;
+    padding: .5em;
+    cursor: pointer;
+    transition: background-color .15s, color .15s;
+    
     &:last-child {
         margin-right: 0;
     }
 
-    p {
-        color: ${({theme}) => theme.colors.primary};
-        font-weight: 700;
-        font-size: 15px;
-        padding: .5em;
+    &:hover {
+        background-color: ${({theme}) => theme.colors.primary};
+        color: ${({theme}) => theme.colors.lightCyanBg}
     }
 `
 
@@ -31,9 +36,9 @@ const Tech: React.FC<TechProps> = ({
     return (
         <>
         {techs.map((tech) => (
-            <StyledItem key={tech}>
-                <p>{tech}</p>
-            </StyledItem>
+            <StyledButton key={tech} className="btnTech" >
+                {tech}
+            </StyledButton>
         ))}
         </>
 )

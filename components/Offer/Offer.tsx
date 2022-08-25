@@ -22,6 +22,11 @@ const StyledWrapper = styled.div`
     padding: 1em 1.5em;
 
     width: 90%;
+    max-width: 1200px;
+
+    &:first-child {
+        margin-top: 10em;
+    }
 
     @media (min-width: 992px) {
         display: flex;
