@@ -33,10 +33,15 @@ const StyledBtn = styled(StyledButton)`
     }
 `
 
-const FilterItem: React.FC = () => {
+interface FilterItemProp {
+    itemName: string,
+    key: string
+}
+
+const FilterItem: React.FC = (props) => {
     return (
         <StyledItem>
-            <StyledBtn>JavaScript</StyledBtn>
+            <StyledBtn>{props.itemName}</StyledBtn>
             <Remove>X</Remove>
         </StyledItem>
     )

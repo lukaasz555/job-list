@@ -108,7 +108,8 @@ export interface OfferProps {
     contract: string,
     location: string,
     languages?: string[],
-    tools?: string[]
+    tools?: string[],
+    addFilter?: VoidFunction,
 }
 
 const Offer: React.FC<OfferProps> = ({
@@ -124,7 +125,8 @@ const Offer: React.FC<OfferProps> = ({
     role,
     level,
     tools,
-    languages
+    languages,
+    addFilter
 }) => {
 
     const [newOffer, setNew] = useState(false);
@@ -154,7 +156,7 @@ const Offer: React.FC<OfferProps> = ({
         </OfferLeft>
 
         <TechWrapper>
-            <Tech role={role} level={level} tools={tools} languages={languages} />
+            <Tech role={role} level={level} tools={tools} languages={languages} addFilter={addFilter} />
         </TechWrapper>
 
 

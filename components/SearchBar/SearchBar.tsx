@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import FilterItem from "../FilterItem/FilterItem";
 
@@ -21,46 +21,52 @@ const Wrapper = styled.div`
     align-items: center;
     z-index: 1;
 
-    .btnClear {
-        border: none;
-        background: transparent;
-        color: ${({theme}) => theme.colors.darkCyan};
-        font-size: 15px;
-        font-weight: 700;
-        cursor: pointer;
-        flex-basis: 10%;
-        //background-color: seagreen;
+`
 
+const ClearButton = styled.button`
+    border: none;
+    background: transparent;
+    color: ${({theme}) => theme.colors.darkCyan};
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-basis: 10%;
+    padding: 1em 0 1em 1em;
 
-        &:hover {
-            color: ${({theme}) => theme.colors.primary};
-            text-decoration: underline;
-        }
+    &:hover {
+        color: ${({theme}) => theme.colors.primary};
+        text-decoration: underline;
     }
 `
 
 const Filters = styled.div`
-display: flex;
-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
     flex-basis: 80%;
 `
 
-const SearchBar: React.FC = () => {
+ export interface SearchBarProp {
+    filters: string[],
+    clearFilters?: any,
+} 
+
+const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters}) => {
+
+
+
+    console.log(filters);
     return (
         <Wrapper>
             <Filters>
-{/* 
-                {offers.map(offer => {
-                    return (
-                        <FilterItem key={offer.id} level={offer.level} role={offer.role} languages={offer.languages} tools={offer.tools} />
+            <>
+                 {filters.map(filter => {
+                    return(
+                        <FilterItem key={filter} itemName={filter} />
                     )
-                })}
-                 */}
-                 <FilterItem />
-                 <FilterItem />
-                 <FilterItem />
+                 })}
+            </>
             </Filters>
-            <button className="btnClear">Clear</button>
+            <ClearButton onClick={clearFilters} >Clear</ClearButton>
         </Wrapper>
     )
 }

@@ -25,18 +25,19 @@ export interface TechProps {
     role: string,
     level: string,
     tools?: string[],
-    languages?: string[]
+    languages?: string[],
+    addFilter?: VoidFunction
 }
 
 const Tech: React.FC<TechProps> = ({
-    role, level, tools, languages
+    role, level, tools, languages, addFilter
 }) => {
     const techs = [role, level].concat(tools, languages)
 
     return (
         <>
         {techs.map((tech) => (
-            <StyledButton key={tech} className="btnTech" >
+            <StyledButton key={tech} className="btnTech" onClick={addFilter} >
                 {tech}
             </StyledButton>
         ))}

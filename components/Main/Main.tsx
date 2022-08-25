@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import data from '../../data/data.json';
 import Offer from '../Offer/Offer';
@@ -18,13 +18,24 @@ const StyledWrapper = styled.main`
 
 
 const Main: React.FC = () => {
-    const [offers, setOffers] = useState(data);
+    const [offers, setOffers] = useState<any[]>(data);
+    const [filters, setFilters] = useState<string[]>([]);
 
+    const addFilter = (e: { target: { textContent: string; }; }) => {
+        if(!filters.includes(e.target.textContent)) {
+            setFilters([...filters, e.target.textContent]);
+        }
+    }
+
+   const clearFilters = () => {
+    setFilters([]);
+   }
 
     return(
         <StyledWrapper>
             <SearchBar
-                offers={offers}
+                filters={filters}
+                clearFilters={clearFilters}
              />
             {offers.map((offer) => (
                 <Offer 
@@ -42,8 +53,11 @@ const Main: React.FC = () => {
                 location={offer.location}
                 languages={offer.languages}
                 tools={offer.tools}
+                addFilter={addFilter}
        />
             ))}
+
+
         </StyledWrapper>
     )
 }
