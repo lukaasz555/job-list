@@ -7,6 +7,8 @@ const StyledItem = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0.25em .5em;
+    border-radius: 8px;
+    overflow: hidden;
 `
 
 const Remove = styled.button`

@@ -10,6 +10,7 @@ export const StyledButton = styled.div`
     padding: .5em;
     cursor: pointer;
     transition: background-color .15s, color .15s;
+    border-radius: 8px;
     
     &:last-child {
         margin-right: 0;
