@@ -109,7 +109,7 @@ export interface OfferProps {
     location: string,
     languages?: string[],
     tools?: string[],
-    addFilter?: VoidFunction,
+    addFilter?: VoidFunction
 }
 
 const Offer: React.FC<OfferProps> = ({

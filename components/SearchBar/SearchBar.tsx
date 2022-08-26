@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import FilterItem from "../FilterItem/FilterItem";
 
@@ -21,6 +21,7 @@ const Wrapper = styled.div`
     align-items: center;
     z-index: 1;
 
+    background-color: ${isVisible => isVisible ? 'lightblue' : 'lightgreen'};
 `
 
 const ClearButton = styled.button`
@@ -48,13 +49,16 @@ const Filters = styled.div`
  export interface SearchBarProp {
     filters: string[],
     clearFilters?: any,
-    removeFilter?: any
+    removeFilter?: any,
+    visible: boolean
 } 
 
-const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters, removeFilter}) => {
-    //console.log(filters);
+const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters, removeFilter, visible}) => {
+    const isVisible = visible;
+
+    console.log('visible SearchBar: ' + visible)    
     return (
-        <Wrapper>
+        <Wrapper isVisible={visible}>
             <Filters>
             <>
                  {filters.map(filter => {

@@ -20,15 +20,19 @@ const StyledWrapper = styled.main`
 const Main: React.FC = () => {
     const [offers, setOffers] = useState<any[]>(data);
     const [filters, setFilters] = useState<string[]>([]);
+    const [visible, setVisible] = useState<boolean>(false);
 
     const addFilter = (e: { target: { textContent: string; }; }) => {
         if(!filters.includes(e.target.textContent)) {
             setFilters([...filters, e.target.textContent]);
+            setVisible(true);
         }
     }
 
    const clearFilters = () => {
     setFilters([]);
+    setVisible(false);
+    //setOffers(data);
    }
 
    const removeFilter = (e: { target: {
@@ -38,8 +42,17 @@ const Main: React.FC = () => {
         if(itemIndex > -1) {
             filters.splice(itemIndex, 1);
             setFilters([...filters]);
+            
         }
    }
+
+/*    useEffect(() => {
+    if(filters.length > 0) {
+        setVisible(true)
+    } else {
+        setVisible(false)
+    }
+   }, [filters.length]) */
 
     return(
         <StyledWrapper>
@@ -47,6 +60,7 @@ const Main: React.FC = () => {
                 filters={filters}
                 clearFilters={clearFilters}
                 removeFilter={removeFilter}
+                visible={visible}
              />
             {offers.map((offer) => (
                 <Offer 
