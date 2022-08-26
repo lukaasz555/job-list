@@ -48,20 +48,18 @@ const Filters = styled.div`
  export interface SearchBarProp {
     filters: string[],
     clearFilters?: any,
+    removeFilter?: any
 } 
 
-const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters}) => {
-
-
-
-    console.log(filters);
+const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters, removeFilter}) => {
+    //console.log(filters);
     return (
         <Wrapper>
             <Filters>
             <>
                  {filters.map(filter => {
                     return(
-                        <FilterItem key={filter} itemName={filter} />
+                        <FilterItem key={filter} filter={filter} filters={filters} removeFilter={removeFilter} />
                     )
                  })}
             </>

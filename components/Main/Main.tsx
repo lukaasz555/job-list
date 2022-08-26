@@ -31,11 +31,22 @@ const Main: React.FC = () => {
     setFilters([]);
    }
 
+   const removeFilter = (e: { target: {
+       previousElementSibling: any; previousSiblingElement: { textContent: string; }; 
+}; }) => {
+        const itemIndex = filters.indexOf(e.target.previousElementSibling.textContent);
+        if(itemIndex > -1) {
+            filters.splice(itemIndex, 1);
+            setFilters([...filters]);
+        }
+   }
+
     return(
         <StyledWrapper>
             <SearchBar
                 filters={filters}
                 clearFilters={clearFilters}
+                removeFilter={removeFilter}
              />
             {offers.map((offer) => (
                 <Offer 

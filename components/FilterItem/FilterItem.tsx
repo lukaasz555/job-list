@@ -34,15 +34,19 @@ const StyledBtn = styled(StyledButton)`
 `
 
 interface FilterItemProp {
-    itemName: string,
-    key: string
+    filter: string,
+    key: string,
+    filters: string[],
+    removeFilter: any
 }
 
-const FilterItem: React.FC = (props) => {
+const FilterItem: React.FC<FilterItemProp> = ({filter, filters, removeFilter}) => {
+
+
     return (
         <StyledItem>
-            <StyledBtn>{props.itemName}</StyledBtn>
-            <Remove>X</Remove>
+            <StyledBtn>{filter}</StyledBtn>
+            <Remove onClick={(e) => removeFilter(e) } >X</Remove>
         </StyledItem>
     )
 }
