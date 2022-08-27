@@ -3,9 +3,7 @@ import styled from "styled-components";
 import FilterItem from "../FilterItem/FilterItem";
 
 
-//musi na bank otrzymywać w propach tablicę/listę;
-
-const Wrapper = styled.div`
+const Wrapper = styled.div<SearchBarProp>`
     background-color: ${({theme}) => theme.colors.lightCyanBg};
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
@@ -20,8 +18,10 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     z-index: 1;
+   transform: ${({visible}) => visible ?
+   'translateX(-50%) scaleY(1)' : 'translateX(-50%) scaleY(0)'
+    }
 
-    background-color: ${isVisible => isVisible ? 'lightblue' : 'lightgreen'};
 `
 
 const ClearButton = styled.button`
@@ -46,7 +46,7 @@ const Filters = styled.div`
     flex-basis: 80%;
 `
 
- export interface SearchBarProp {
+interface SearchBarProp {
     filters: string[],
     clearFilters?: any,
     removeFilter?: any,
@@ -58,7 +58,7 @@ const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters, removeFilter
 
     console.log('visible SearchBar: ' + visible)    
     return (
-        <Wrapper isVisible={visible}>
+        <Wrapper visible={visible}>
             <Filters>
             <>
                  {filters.map(filter => {

@@ -22,7 +22,7 @@ export const StyledButton = styled.div`
     }
 `
 
-export interface TechProps {
+interface TechProps {
     role: string,
     level: string,
     tools?: string[],

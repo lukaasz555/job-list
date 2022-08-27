@@ -42,17 +42,12 @@ const Main: React.FC = () => {
         if(itemIndex > -1) {
             filters.splice(itemIndex, 1);
             setFilters([...filters]);
-            
+            if(filters.length === 0) {
+                setVisible(false)
+            }
         }
    }
-
-/*    useEffect(() => {
-    if(filters.length > 0) {
-        setVisible(true)
-    } else {
-        setVisible(false)
-    }
-   }, [filters.length]) */
+ 
 
     return(
         <StyledWrapper>

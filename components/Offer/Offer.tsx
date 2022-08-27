@@ -95,7 +95,7 @@ const TechWrapper = styled.div`
     }
 `
 
-export interface OfferProps {
+interface OfferProps {
     id: number,
     company: string,
     logo: string,
@@ -109,7 +109,7 @@ export interface OfferProps {
     location: string,
     languages?: string[],
     tools?: string[],
-    addFilter?: VoidFunction
+    addFilter?: any
 }
 
 const Offer: React.FC<OfferProps> = ({
