@@ -8,30 +8,31 @@ import Logo from "../atoms/Logo/Logo";
 import Details from "../atoms/Details/Details";
 import Tech from "../atoms/Tech/Tech";
 
-const OfferLeft = styled.div`
-    display: flex;
-    flex-direction: column;
-`
 
-const StyledWrapper = styled.div`
+
+const StyledWrapper = styled.div<{visible: boolean}>`
     background-color: ${({theme}) => theme.colors.lightCyanBg};
     border-radius: 8px;
     position: relative;
     margin: 2em 0 2em;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
     padding: 1em 1.5em;
-
     width: 90%;
+    min-width: 350px;
     max-width: 1200px;
-
-    &:first-child {
-        margin-top: 10em;
+    
+    &:nth-child(2) {
+    margin-top: ${({visible}) => visible ? '10em' : '0'}
     }
 
     @media (min-width: 992px) {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        &:nth-child(2) {
+        margin-top: ${({visible}) => visible ? '5em' : '0'}
+        }
     }
 
 
@@ -62,9 +63,13 @@ const StyledWrapper = styled.div`
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
     }
-
-
 `
+const OfferLeft = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+
 const TopWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
@@ -109,7 +114,8 @@ interface OfferProps {
     location: string,
     languages?: string[],
     tools?: string[],
-    addFilter?: any
+    addFilter?: any,
+    visible: boolean
 }
 
 const Offer: React.FC<OfferProps> = ({
@@ -126,7 +132,8 @@ const Offer: React.FC<OfferProps> = ({
     level,
     tools,
     languages,
-    addFilter
+    addFilter,
+    visible
 }) => {
 
     const [newOffer, setNew] = useState(false);
@@ -137,7 +144,7 @@ const Offer: React.FC<OfferProps> = ({
     }, []);
 
     return (
-        <StyledWrapper>
+        <StyledWrapper visible={visible}>
         {newOffer ? <span className="leftItemNew"></span> : <span className="leftItem"></span> }
 
         <Logo company={company} logo={logo} />  

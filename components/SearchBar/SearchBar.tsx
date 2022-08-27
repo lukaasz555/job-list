@@ -20,8 +20,7 @@ const Wrapper = styled.div<SearchBarProp>`
     z-index: 1;
    transform: ${({visible}) => visible ?
    'translateX(-50%) scaleY(1)' : 'translateX(-50%) scaleY(0)'
-    }
-
+    };
 `
 
 const ClearButton = styled.button`

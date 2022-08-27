@@ -32,7 +32,6 @@ const Main: React.FC = () => {
    const clearFilters = () => {
     setFilters([]);
     setVisible(false);
-    //setOffers(data);
    }
 
    const removeFilter = (e: { target: {
@@ -74,7 +73,9 @@ const Main: React.FC = () => {
                 languages={offer.languages}
                 tools={offer.tools}
                 addFilter={addFilter}
+                visible={visible}
        />
+       
             ))}
 
 

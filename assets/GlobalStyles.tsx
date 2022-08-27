@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'League Spartan', sans-serif;
+        background-color: ${({theme}) => theme.colors.lightCyanBg};
     }
 
     a, button {
