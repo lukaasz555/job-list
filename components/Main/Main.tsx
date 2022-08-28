@@ -26,7 +26,9 @@ const Main: React.FC = () => {
         if(!filters.includes(e.target.textContent)) {
             setFilters([...filters, e.target.textContent]);
             setVisible(true);
+            handleFilters(filters)
         }
+        
     }
 
    const clearFilters = () => {
@@ -46,6 +48,19 @@ const Main: React.FC = () => {
             }
         }
    }
+
+   const getFilters = (tech: string) => {
+        const res: string[] = [];
+        const filtersArray = offers.filter(item => item.tools === tech || item.languages === tech || item.level === tech || item.role === tech ? res.push(item) : null);
+        return res
+   }
+
+   const handleFilters = (filters: string[]) => {
+        const filtersArray = filters.map((item: string) => getFilters(item));
+        console.log(filtersArray);
+        setOffers([...filtersArray]);
+   }
+
  
 
     return(
