@@ -26,7 +26,7 @@ const Main: React.FC = () => {
         if(!filters.includes(e.target.textContent)) {
             setFilters([...filters, e.target.textContent]);
             setVisible(true);
-            getFilteredOffers('Ruby');
+            getFilteredOffers('RoR');
             
         }   
     } 
@@ -88,17 +88,22 @@ const Main: React.FC = () => {
    ]
 
 
-   const [filteredOffers, setFilteredOffers] = useState<any[]>([]);
+   const [filteredOffers, setFilteredOffers] = useState<any>([]);
 
    const getFilteredOffers = (filter: string) => {
         offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
         || item.level === filter ? filteredOffers.push(item) : null
         || item.languages.includes(filter) ? filteredOffers.push(item) : null
         || item.tools.includes(filter) ? filteredOffers.push(item) : null
-    //    || item.tools.includes(filter) ? setOffers([...filteredOffers, item]) : null
         )
         setOffers(filteredOffers);
-   }
+        console.log(filteredOffers);
+   } 
+
+
+
+
+
 
 
     return(
