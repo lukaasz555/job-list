@@ -22,19 +22,22 @@ const Main: React.FC = () => {
     const [filters, setFilters] = useState<string[]>([]);
     const [visible, setVisible] = useState<boolean>(false);
 
-    const addFilter = (e: { target: { textContent: string; }; }) => {
+  const addFilter = (e: { target: { textContent: string; }; }) => {
         if(!filters.includes(e.target.textContent)) {
             setFilters([...filters, e.target.textContent]);
             setVisible(true);
-            handleFilters(filters)
-        }
-        
-    }
+            getFilteredOffers('Ruby');
+            
+        }   
+    } 
+
 
    const clearFilters = () => {
     setFilters([]);
     setVisible(false);
+    setOffers(data);
    }
+
 
    const removeFilter = (e: { target: {
        previousElementSibling: any; previousSiblingElement: { textContent: string; }; 
@@ -49,19 +52,54 @@ const Main: React.FC = () => {
         }
    }
 
-   const getFilters = (tech: string) => {
-        const res: string[] = [];
-        const filtersArray = offers.filter(item => item.tools === tech || item.languages === tech || item.level === tech || item.role === tech ? res.push(item) : null);
-        return res
+   //const [filteredOffers, setFilteredOffers] = useState<any[]>([]);
+   const juniors = [
+            {
+                "id": 8,
+                "company": "Insure",
+                "logo": "/images/insure.svg",
+                "new": false,
+                "featured": false,
+                "position": "Junior Frontend Developer",
+                "role": "Frontend",
+                "level": "Junior",
+                "postedAt": "2w ago",
+                "contract": "Full Time",
+                "location": "USA Only",
+                "languages": ["JavaScript"],
+                "tools": ["Vue", "Sass"]
+              },
+
+              {
+                "id": 10,
+                "company": "The Air Filter Company",
+                "logo": "/images/the-air-filter-company.svg",
+                "new": false,
+                "featured": false,
+                "position": "Front-end Dev",
+                "role": "Frontend",
+                "level": "Junior",
+                "postedAt": "1mo ago",
+                "contract": "Part Time",
+                "location": "Worldwide",
+                "languages": ["JavaScript"],
+                "tools": ["React", "Sass"]
+              }
+   ]
+
+
+   const [filteredOffers, setFilteredOffers] = useState<any[]>([]);
+
+   const getFilteredOffers = (filter: string) => {
+        offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
+        || item.level === filter ? filteredOffers.push(item) : null
+        || item.languages.includes(filter) ? filteredOffers.push(item) : null
+        || item.tools.includes(filter) ? filteredOffers.push(item) : null
+    //    || item.tools.includes(filter) ? setOffers([...filteredOffers, item]) : null
+        )
+        setOffers(filteredOffers);
    }
 
-   const handleFilters = (filters: string[]) => {
-        const filtersArray = filters.map((item: string) => getFilters(item));
-        console.log(filtersArray);
-        setOffers([...filtersArray]);
-   }
-
- 
 
     return(
         <StyledWrapper>

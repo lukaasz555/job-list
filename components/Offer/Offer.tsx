@@ -163,7 +163,7 @@ const Offer: React.FC<OfferProps> = ({
         </OfferLeft>
 
         <TechWrapper>
-            <Tech role={role} level={level} tools={tools} languages={languages} addFilter={addFilter} />
+            <Tech role={role} level={level} tools={tools} languages={languages} addFilter={addFilter} id={id} />
         </TechWrapper>
 
 

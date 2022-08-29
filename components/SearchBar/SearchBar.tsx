@@ -53,8 +53,7 @@ interface SearchBarProp {
 } 
 
 const SearchBar: React.FC<SearchBarProp> = ({filters, clearFilters, removeFilter, visible}) => {
-
-    console.log('visible SearchBar: ' + visible)    
+ 
     return (
         <Wrapper visible={visible}>
             <Filters>
