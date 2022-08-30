@@ -27,7 +27,6 @@ const Main: React.FC = () => {
             setFilters([...filters, e.target.textContent]);
             setVisible(true);
             getFilteredOffers('RoR');
-            
         }   
     } 
 
@@ -91,15 +90,25 @@ const Main: React.FC = () => {
    const [filteredOffers, setFilteredOffers] = useState<any>([]);
 
    const getFilteredOffers = (filter: string) => {
-        offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
+        if(Object.values(filteredOffers).includes(filter)) {
+            console.log(filter + ' jest juz w obiekcie');
+        } else {
+            console.log('nowy filtr: ' + filter);
+        }
+/*         offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
         || item.level === filter ? filteredOffers.push(item) : null
         || item.languages.includes(filter) ? filteredOffers.push(item) : null
         || item.tools.includes(filter) ? filteredOffers.push(item) : null
         )
         setOffers(filteredOffers);
-        console.log(filteredOffers);
+        console.log(filteredOffers); */
    } 
 
+   const getFilters = (filters: string []) => {
+        //console.log(filters);
+        let fOffs = filters.map(filter => getFilteredOffers(filter));
+        console.log(fOffs);
+   }
 
 
 
