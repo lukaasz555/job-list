@@ -19,16 +19,26 @@ const StyledWrapper = styled.main`
 
 const Main: React.FC = () => {
     const [offers, setOffers] = useState<any[]>(data);
+    const [filteredOffers, setFilteredOffers] = useState<any[]>();
     const [filters, setFilters] = useState<string[]>([]);
     const [visible, setVisible] = useState<boolean>(false);
 
+/*     const handleOffers = (offers, filteredOffers, filters) => {
+        if()
+    } */
+
   const addFilter = (e: { target: { textContent: string; }; }) => {
         if(!filters.includes(e.target.textContent)) {
+            filters.length === 0 ? setVisible(true) : null
             setFilters([...filters, e.target.textContent]);
-            setVisible(true);
-            getFilteredOffers('RoR');
-            
-        }   
+            setOffers(offers.filter(offersFilter))
+            //setFilters(['React', 'Junior'])
+            //setOffers([...offers.filter(offersFilter)]);
+
+        }  
+        //setOffers([...offers.filter(offersFilter)]);
+        console.log('outside filtry');
+        console.log(filters);
     } 
 
 
@@ -46,61 +56,54 @@ const Main: React.FC = () => {
         if(itemIndex > -1) {
             filters.splice(itemIndex, 1);
             setFilters([...filters]);
-            if(filters.length === 0) {
-                setVisible(false)
-            }
+            filters.length === 0 ? setVisible(false) : null
         }
    }
 
-   //const [filteredOffers, setFilteredOffers] = useState<any[]>([]);
-   const juniors = [
-            {
-                "id": 8,
-                "company": "Insure",
-                "logo": "/images/insure.svg",
-                "new": false,
-                "featured": false,
-                "position": "Junior Frontend Developer",
-                "role": "Frontend",
-                "level": "Junior",
-                "postedAt": "2w ago",
-                "contract": "Full Time",
-                "location": "USA Only",
-                "languages": ["JavaScript"],
-                "tools": ["Vue", "Sass"]
-              },
 
-              {
-                "id": 10,
-                "company": "The Air Filter Company",
-                "logo": "/images/the-air-filter-company.svg",
-                "new": false,
-                "featured": false,
-                "position": "Front-end Dev",
-                "role": "Frontend",
-                "level": "Junior",
-                "postedAt": "1mo ago",
-                "contract": "Part Time",
-                "location": "Worldwide",
-                "languages": ["JavaScript"],
-                "tools": ["React", "Sass"]
-              }
-   ]
-
-
-   const [filteredOffers, setFilteredOffers] = useState<any>([]);
 
    const getFilteredOffers = (filter: string) => {
-        offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
+        if(Object.values(filteredOffers).includes(filter)) {
+            console.log(filter + ' jest juz w obiekcie');
+        } else {
+            console.log('nowy filtr: ' + filter);
+        }
+/*         offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
         || item.level === filter ? filteredOffers.push(item) : null
         || item.languages.includes(filter) ? filteredOffers.push(item) : null
         || item.tools.includes(filter) ? filteredOffers.push(item) : null
         )
         setOffers(filteredOffers);
-        console.log(filteredOffers);
+        console.log(filteredOffers); */
    } 
 
 
+// stack overflow:
+interface OfferProps {
+    role: string,
+    level: string,
+    languages: string[],
+    tools: string[]
+}
+const checkOffer = (offer: OfferProps, filter: string) => {
+    if(offer.role === filter || offer.level === filter ||
+        offer.languages.includes(filter) || offer.tools.includes(filter)) {
+        return true
+    }
+}
+
+const offersFilter = (offer: OfferProps) => {
+        for(let i = 0; i < filters.length; i++) {
+            if(!checkOffer(offer, filters[i])) {
+                return false
+            }
+        }
+        return true;
+}
+
+useEffect(() => {
+    setOffers(offers.filter(offersFilter))
+}, [filters])
 
 
 
