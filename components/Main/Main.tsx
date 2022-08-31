@@ -23,23 +23,32 @@ const Main: React.FC = () => {
     const [filters, setFilters] = useState<string[]>([]);
     const [visible, setVisible] = useState<boolean>(false);
 
-/*     const handleOffers = (offers, filteredOffers, filters) => {
-        if()
-    } */
 
   const addFilter = (e: { target: { textContent: string; }; }) => {
         if(!filters.includes(e.target.textContent)) {
             filters.length === 0 ? setVisible(true) : null
             setFilters([...filters, e.target.textContent]);
-            setOffers(offers.filter(offersFilter))
-            //setFilters(['React', 'Junior'])
-            //setOffers([...offers.filter(offersFilter)]);
-
         }  
-        //setOffers([...offers.filter(offersFilter)]);
-        console.log('outside filtry');
-        console.log(filters);
     } 
+
+
+   const removeFilter = (e: { target: {
+       previousElementSibling: any; previousSiblingElement: { textContent: string; }; 
+        }; }) => {
+            const itemIndex = filters.indexOf(e.target.previousElementSibling.textContent);
+                if(itemIndex > -1) {
+                    //let newFilters = filters.filter((filter, i) => i !== itemIndex)
+                    //setFilters(newFilters)
+
+                    setFilters(filters.filter((filter, i) => i !== itemIndex))
+                    //console.log(filters.length);
+                 }
+            if(filters.length === 0) {
+                setVisible(false)
+                setOffers(data)
+            }
+   }
+ 
 
 
    const clearFilters = () => {
@@ -49,33 +58,23 @@ const Main: React.FC = () => {
    }
 
 
-   const removeFilter = (e: { target: {
-       previousElementSibling: any; previousSiblingElement: { textContent: string; }; 
-}; }) => {
-        const itemIndex = filters.indexOf(e.target.previousElementSibling.textContent);
-        if(itemIndex > -1) {
-            filters.splice(itemIndex, 1);
-            setFilters([...filters]);
-            filters.length === 0 ? setVisible(false) : null
-        }
-   }
 
-
-// stack overflow:
-interface OfferProps {
+    interface OfferProps {
     role: string,
     level: string,
     languages: string[],
     tools: string[]
 }
-const checkOffer = (offer: OfferProps, filter: string) => {
-    if(offer.role === filter || offer.level === filter ||
-        offer.languages.includes(filter) || offer.tools.includes(filter)) {
-        return true
+
+
+    const checkOffer = (offer: OfferProps, filter: string) => {
+        if(offer.role === filter || offer.level === filter ||
+            offer.languages.includes(filter) || offer.tools.includes(filter)) {
+                return true
     }
 }
 
-const offersFilter = (offer: OfferProps) => {
+    const offersFilter = (offer: OfferProps) => {
         for(let i = 0; i < filters.length; i++) {
             if(!checkOffer(offer, filters[i])) {
                 return false
@@ -84,8 +83,10 @@ const offersFilter = (offer: OfferProps) => {
         return true;
 }
 
+
 useEffect(() => {
-    setOffers(offers.filter(offersFilter))
+    setOffers(offers.filter(offersFilter));
+    console.log('filters has changed');
 }, [filters])
 
 
