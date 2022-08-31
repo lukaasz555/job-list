@@ -61,23 +61,6 @@ const Main: React.FC = () => {
    }
 
 
-
-   const getFilteredOffers = (filter: string) => {
-        if(Object.values(filteredOffers).includes(filter)) {
-            console.log(filter + ' jest juz w obiekcie');
-        } else {
-            console.log('nowy filtr: ' + filter);
-        }
-/*         offers.forEach(item => item.role === filter ? filteredOffers.push(item) : null
-        || item.level === filter ? filteredOffers.push(item) : null
-        || item.languages.includes(filter) ? filteredOffers.push(item) : null
-        || item.tools.includes(filter) ? filteredOffers.push(item) : null
-        )
-        setOffers(filteredOffers);
-        console.log(filteredOffers); */
-   } 
-
-
 // stack overflow:
 interface OfferProps {
     role: string,
