@@ -18,6 +18,7 @@ const StyledWrapper = styled.main`
 
 
 const Main: React.FC = () => {
+    const [allOffers, setAllOffers] = useState<any[]>(data);
     const [offers, setOffers] = useState<any[]>(data);
     const [filteredOffers, setFilteredOffers] = useState<any[]>();
     const [filters, setFilters] = useState<string[]>([]);
@@ -28,7 +29,7 @@ const Main: React.FC = () => {
         if(!filters.includes(e.target.textContent)) {
             filters.length === 0 ? setVisible(true) : null
             setFilters([...filters, e.target.textContent]);
-        }  
+            }
     } 
 
 
@@ -37,16 +38,18 @@ const Main: React.FC = () => {
         }; }) => {
             const itemIndex = filters.indexOf(e.target.previousElementSibling.textContent);
                 if(itemIndex > -1) {
-                    //let newFilters = filters.filter((filter, i) => i !== itemIndex)
-                    //setFilters(newFilters)
-
+                    console.log('usunalem filtr');
                     setFilters(filters.filter((filter, i) => i !== itemIndex))
                     //console.log(filters.length);
+
+                    if(filters.length === 1) {
+                        setVisible(false)
+                        setOffers(data)
+                    } else {
+                        setOffers(offers.filter(offersFilter));
+                        console.log('teraz powinna zmienic sie tablica filters');
+                    }
                  }
-            if(filters.length === 0) {
-                setVisible(false)
-                setOffers(data)
-            }
    }
  
 
@@ -84,14 +87,10 @@ const Main: React.FC = () => {
 }
 
 
-useEffect(() => {
-    setOffers(offers.filter(offersFilter));
-    console.log('filters has changed');
-}, [filters])
 
-
-
-
+    useEffect(() => {
+    setOffers(allOffers.filter(offersFilter));
+    }, [filters]) 
 
     return(
         <StyledWrapper>
