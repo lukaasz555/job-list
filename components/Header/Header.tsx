@@ -1,16 +1,8 @@
-import React from "react";
-import styled from 'styled-components';
-
-const StyledHeader = styled.header`
-    width: 100%;
-    min-height: 140px;
-    background-color: ${({theme}) => theme.colors.primary};
-`
+import React from 'react';
+import { StyledHeader } from './Header.styles';
 
 const Header: React.FC = () => {
-    return(
-        <StyledHeader />
-    )
-}
+	return <StyledHeader />;
+};
 
-export default Header
+export default Header;
