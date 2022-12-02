@@ -11,18 +11,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
 	filteringCriteria,
 	setFilteringCriteria,
 }) => {
-	const [visible, setVisible] = useState<boolean>(false);
-
-	useEffect(() => {
-		if (filteringCriteria.length > 0) {
-			setVisible(true);
-		} else {
-			setVisible(false);
-		}
-	}, [filteringCriteria]);
-
 	return (
-		<Wrapper visible={visible}>
+		<Wrapper>
 			<Filters>
 				<>
 					{filteringCriteria.map((filter) => {

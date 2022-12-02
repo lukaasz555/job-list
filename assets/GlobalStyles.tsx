@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, DefaultTheme } from 'styled-components';
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<{ theme: DefaultTheme }>`
     @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap');
 
     * {
@@ -15,12 +15,11 @@ const GlobalStyles = createGlobalStyle`
 
     body {
         font-family: 'League Spartan', sans-serif;
-        background-color: ${({theme}) => theme.colors.lightCyanBg};
     }
 
     a, button {
         font-family: 'League Spartan', sans-serif;
     }
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;

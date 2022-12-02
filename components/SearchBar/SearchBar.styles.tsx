@@ -16,8 +16,6 @@ export const Wrapper = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	z-index: 1;
-	transform: ${({ visible }) =>
-		visible ? 'translateX(-50%) scaleY(1)' : 'translateX(-50%) scaleY(0)'};
 `;
 
 export const ClearButton = styled.button`
